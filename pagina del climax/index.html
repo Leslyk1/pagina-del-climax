@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src=""></script>
+    <title>Noticias del clima</title>
+</head>
+<body>
+    <header>
+        <h1>Clima Net</h1>
+    </header>
+    <div class="conteiner Inicio">
+        <nav>
+            <span class="cat" onclick="buscar('Inicio')"> Inicio</span>
+            <span class="cat" onclick="buscar('Pronostico')"> Pronosticos</span>
+            <span class="cat" onclick="buscar('Alertas Meteorológicas')"> Alertas Meteorológicas</span>
+            <span class="cat" onclick="buscar('Resumen Semanal')"> Resumen semanal</span>
+            <span class="cat" onclick="buscar('Mundial')"> Mundial</span>
+        </nav>
+        <div class="busqueda">
+            <input type="text" placeholder="Buscar" id="Busqueda">
+            <button onclick="buscarTema()">Buscar</button>
+        </div>
+    </div>
+    <div class="itemcarrusel">
+        <div class="carrusel" id="carrusel1-1">
+            <div class="tarjeta">
+                <img src="img/clima1.png" alt="">
+            </div>
+            <div class="flechas">
+                <a href="#carrusel1-4"><i>I</i></a>
+                <a href="#carrusel1-2"><i>D</i></a>
+            </div>
+        </div>
+        <div class="carrusel" id="carrusel1-2">
+            <div class="tarjeta">
+                <img src="img/clima2.jpeg" alt="">
+            </div>
+            <div class="flechas">
+                <a href="#carrusel1-1"><i>I</i></a>
+                <a href="#carrusel1-3"><i>D</i></a>
+            </div>
+        </div>
+        <div class="carrusel" id="carrusel1-3">
+            <div class="tarjeta">
+                <img src="img/clima3.jpeg" alt="">
+            </div>
+            <div class="flechas">
+                <a href="#carrusel1-2"><i>I</i></a>
+                <a href="#carrusel1-4"><i>D</i></a>
+            </div>
+        </div>
+        <div class="carrusel" id="carrusel1-4">
+            <div class="tarjeta">
+                <img src="img/clima4.jpg" alt="">
+            </div>
+            <div class="flechas">
+                <a href="#carrusel1-3"><i>I</i></a>
+                <a href="#carrusel1-1"><i>D</i></a>
+            </div>
+        </div>
+    </div>
+    <div class="conteiner informacion">
+        <div class="row">
+            <div class="colum">
+                <div class="card news">
+                    <div class="card-body">
+                        <h5 class="card-title">Pronóstico del dia</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="colum">
+                <div class="card news">
+                    <div class="card-body">
+                        <h5 class="card-title">Alertas meteorológicas</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="colum">
+                <div class="card news">
+                    <div class="card-body">
+                        <h5 class="card-title">Resumen semanal</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="colum">
+                <div class="card news">
+                    <div class="card-body">
+                        <h5 class="card-title">Mundial</h5>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Función para obtener el pronóstico del tiempo
+        function obtenerPronostico(ciudad) {
+            const apiKey = 'TU_API_KEY'; // Reemplaza 'TU_API_KEY' con tu API key de OpenWeatherMap
+            const url = `https://api.openweathermap.org/data/2.5/weather?id=3598132&appid=1d8dc8323ad1e77e020b54e6bed1a95f&units=celsius`;
+
+            fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                const pronostico = data.weather[0].description;
+                document.getElementById('pronostico').innerText = pronostico;
+            })
+            .catch(error => {
+                console.error('Error al obtener el pronóstico del tiempo:', error);
+            });
+        }
+
+        // Ejemplo de uso
+        window.onload = function() {
+            obtenerPronostico('NombreDeTuCiudad');
+        };
+    </script>
+</body>
+</html>
